@@ -24,6 +24,7 @@ app.get('/list', async (req, res) => {
     tableName,
     view
   })
+  // @TODO: Add appropriate error handling
   res.json(records)
 })
 
