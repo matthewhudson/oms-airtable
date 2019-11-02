@@ -2,7 +2,7 @@
   "name": "oms-nodejs",
   "private": true,
   "version": "0.0.1",
-  "description": "An Open Microservice template for Node.js",
+  "description": "An Open Microservice wrapper for the Airtable API.",
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
@@ -13,11 +13,15 @@
   "author": "Matthew Hudson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/matthewhudson/oms-nodejs/issues"
+    "url": "https://github.com/matthewhudson/oms-airtable/issues"
   },
-  "homepage": "https://github.com/matthewhudson/oms-nodejs#readme",
-  "keywords": ["microservice", "oms"],
+  "homepage": "https://github.com/matthewhudson/oms-airtable#readme",
+  "keywords": [
+    "microservice",
+    "oms"
+  ],
   "dependencies": {
+    "airtable": "^0.7.2",
     "body-parser": "1.19.0",
     "express": "4.17.1"
   },

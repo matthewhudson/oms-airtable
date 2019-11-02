@@ -3,14 +3,28 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const actions = require('./actions')
 
 app.use(bodyParser.json())
 
 const port = process.env.PORT || 8080
 
-app.post('/message', (req, res) => {
-  const { name } = req.body
-  res.json({ message: `Hello ${name}` })
+app.get('/list', async (req, res) => {
+  const {
+    baseId,
+    fields = [],
+    maxRecords = 1,
+    tableName,
+    view = 'Grid view'
+  } = req.query
+  const records = await actions.list({
+    baseId,
+    fields,
+    maxRecords,
+    tableName,
+    view
+  })
+  res.json(records)
 })
 
 app.get('/health', (req, res) => res.send('OK'))

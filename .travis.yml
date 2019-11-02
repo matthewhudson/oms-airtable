@@ -1,15 +1,20 @@
 language: node_js
 node_js:
-  - '10'
-
+  - '12'
 services:
   - docker
-
 before_install:
-  - npm i @microservices/oms
-
+  - npm i @microservices/cli
+env:
+  global:
+    secure: oF652X5RriMCo8hDUCh0162tEdEi6YCazRIw5T6mmRZW7//8pItBNngHNA/+BiCkZYupz19AKNxFWHYLDuLXsOA/Wcxp1xQVIt43naCN8FUxvAlQ0s37ACPMVNOUVe7CRkTOrSweDxWhRS7MevKKyA6t2tAS3J95TV090Qm2b4O8i3Hg+3zk6alnk0v8OLzCcM0GPNy7nQ1aguPhHn2MSpts9nbA00rtPYrjfAW33SREAnWnoqc8aWwmSZhxFMcL/sZv0PrXVRiSA97+OG4U6jfO92QvhvHj/F0WLBst5xwhZbJ6e7GkPLvxkIiNKyBMt5EuoMlvfj7yyqam+EdvZOW4N3AU7BmvGXao4avY0W5wx3tfWTQ2TNeBm/dv058Iw4+IkQHYXId0y0sP7fVrKQRCZVdAVqI91SQUNE5gg2ZLB/gHegoftvQqHPRhs4myrkEVKS9WdbymPlGR4GZpRK92PbHwZiAmAqfkStLa7UW+9EGblpROrFVnYgn+3orjda+3z5YBmkq3Ar3hxqpNKSagUhjf28TSPuPoeX3uJjO7qex5v9Q0Fb6xvN+2clifNulJgBDHksOmoLFbq4RsuepHb9pn11OUHKwdVwpdtbXNfJuXF2ijfxmA7UKuuQCOQdp5hLIhGu90p92SG2vb+mBfGyoBaNsclzGMjC4rX00=
 script:
   - npx oms build
   - |
-    output="$(npx oms run --silent message -a name="World" | jq -c .)"
-    if [ "$output" != '{"message":"Hello World"}' ] ; then echo "$output"; exit 1; fi
+    output="$(npx oms run --silent list \
+      -a view="Grid view" \
+      -a baseId="appIFuRIbuq45IjIW" \
+      -a tableName="Accounts" \
+      -a maxRecords=1 \
+      -e AIRTABLE_API_KEY=$AIRTABLE_API_KEY | jq -c .)"
+    if [ "$output" != '[{"id":"rec9BKz3GNBRfqAJ2","Service Name":"Instagram","User Name":"thematthewhudson","URL":"https://www.instagram.com/thematthewhudson/","Kind":"Social"}]' ] ; then echo "$output"; exit 1; fi

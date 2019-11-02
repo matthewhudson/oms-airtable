@@ -2,8 +2,8 @@ omg: 1
 
 info:
   version: 1.0.0
-  title: Your microservice
-  description: Describe your microservice
+  title: oms-airtable
+  description: An Open Microservice wrapper for the Airtable API.
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -18,19 +18,51 @@ health:
     port: 8080
 
 actions:
-  message:
+  list:
+    help: List records in a table.
     http:
-      path: /message
-      method: post
+      path: /list
+      method: get
       port: 8080
     arguments:
-      name:
-        type: string
+      baseId:
         required: true
-        in: requestBody
+        in: query
+        type: string
+      tableName:
+        required: true
+        in: query
+        type: string
+      view:
+        required: false
+        default: Grid view
+        in: query
+        type: string
+      fields:
+        help:
+          Only data for fields whose names are in this list will be included in
+          the result. If you don't need every field, you can use this parameter
+          to reduce the amount of data transferred.
+        required: false
+        in: query
+        type: list
+        list:
+          elements:
+            type: string
+      maxRecords:
+        help:
+          The maximum total number of records that will be returned in your
+          request.
+        required: false
+        default: 200
+        in: query
+        type: int
     output:
       contentType: application/json
-      type: object
-      properties:
-        message:
-          type: string
+      type: map
+
+environment:
+  AIRTABLE_API_KEY:
+    type: string
+    required: true
+    help: API Key provided by Airtable
