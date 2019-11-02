@@ -30,7 +30,7 @@ const list = async inputs => {
           if (err) {
             reject(err)
           }
-          resolve(allRecords)
+          resolve({ records: allRecords })
         }
       )
   })

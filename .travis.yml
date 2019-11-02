@@ -17,4 +17,4 @@ script:
       -a tableName="Accounts" \
       -a maxRecords=1 \
       -e AIRTABLE_API_KEY=$AIRTABLE_API_KEY | jq -c .)"
-    if [ "$output" != '[{"id":"rec9BKz3GNBRfqAJ2","Service Name":"Instagram","User Name":"thematthewhudson","URL":"https://www.instagram.com/thematthewhudson/","Kind":"Social"}]' ] ; then echo "$output"; exit 1; fi
+    if [ "$output" != '{"records":[{"id":"rec9BKz3GNBRfqAJ2","Service Name":"Instagram","User Name":"thematthewhudson","URL":"https://www.instagram.com/thematthewhudson/","Kind":"Social"}]}' ] ; then echo "$output"; exit 1; fi
