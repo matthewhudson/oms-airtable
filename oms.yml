@@ -1,8 +1,8 @@
-omg: 1
+oms: 1
 
 info:
   version: 1.0.0
-  title: oms-airtable
+  title: Airtable
   description: An Open Microservice wrapper for the Airtable API.
   license:
     name: MIT
@@ -10,7 +10,7 @@ info:
 
 lifecycle:
   startup:
-    command: ['node', '/app/src/index.js']
+    command: ["node", "/app/src/index.js"]
 
 health:
   http:
@@ -50,8 +50,7 @@ actions:
           elements:
             type: string
       maxRecords:
-        help:
-          The maximum total number of records that will be returned in your
+        help: The maximum total number of records that will be returned in your
           request.
         required: false
         default: 200
